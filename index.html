@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Brother's Name | Personal Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-2: #d946ef;
+      --accent-3: #a78bfa;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(217, 70, 239, 0.22), transparent 35%),
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3), var(--accent));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.22);
+    }
+
+    .brand-icon span {
+      font-size: 20px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-links a {
+      padding: 10px 15px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      padding: 70px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 999px;
+      color: #cffafe;
+      background: rgba(56, 189, 248, 0.1);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #67e8f9, #f0abfc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 650px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: white;
+      color: #0f172a;
+    }
+
+    .button.primary:hover {
+      transform: translateY(-2px);
+      background: #cffafe;
+    }
+
+    .button.secondary {
+      border-color: var(--card-border);
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+    }
+
+    .button.secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 560px;
+    }
+
+    .stat {
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      box-shadow: 0 30px 80px var(--shadow);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background: linear-gradient(135deg, rgba(217, 70, 239, 0.24), rgba(56, 189, 248, 0.18));
+      filter: blur(40px);
+      z-index: -1;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 18px;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-caption small {
+      color: var(--muted);
+    }
+
+    .hero-caption h3 {
+      margin-top: 4px;
+      font-size: 20px;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 16px;
+      font-size: 17px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    }
+
+    .card-content {
+      padding: 26px;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .portrait {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .mini-card {
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .mini-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .project-card {
+      transition: 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.13);
+      color: #bae6fd;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .detail {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .detail span:first-child {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .award-card {
+      display: flex;
+      gap: 18px;
+      padding: 26px;
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: white;
+      color: #0f172a;
+      font-size: 24px;
+    }
+
+    .award-card small {
+      display: block;
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 245px;
+      object-fit: cover;
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      background: black;
+    }
+
+    .contact-card {
+      max-width: 760px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(217, 70, 239, 0.1)),
+        var(--card);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--card-border);
+      color: #94a3b8;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        height: auto;
+        padding: 16px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 18px;
+      }
+
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .hero-card img {
+        height: 380px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="brand-icon">
+          <span>✦</span>
+        </div>
+        <div>
+          Your Brother's Name
+          <small>Personal Portfolio</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#music">Music</a>
+        <a href="#math">Math</a>
+        <a href="#accomplishments">Accomplishments</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill">🎵 Music · 🧮 Math · ⭐ School · Creativity</div>
+
+          <h1>
+            A modern portfolio for
+            <span class="gradient-text">Your Brother's Name</span>.
+          </h1>
+
+          <p>
+            A personal website for sharing music performances, math achievements,
+            school accomplishments, photos, videos, and favorite projects.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="button primary" href="#music">See Music →</a>
+            <a class="button secondary" href="#math">See Math</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>5+</strong>
+              <span>Years of Music</span>
+            </div>
+            <div class="stat">
+              <strong>10+</strong>
+              <span>Math Competitions</span>
+            </div>
+            <div class="stat">
+              <strong>15+</strong>
+              <span>Performances</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img
+            src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1600&auto=format&fit=crop"
+            alt="Music performance placeholder"
+          />
+          <div class="hero-caption">
+            <small>Featured Highlight</small>
+            <h3>Add his favorite achievement, performance, or goal here.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">About</div>
+          <h2>A snapshot of who he is.</h2>
+          <p>
+            Use this section for a short biography, hobbies, favorite subjects,
+            and what he is currently learning.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <img
+              class="portrait"
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"
+              alt="Portrait placeholder"
+            />
+            <div class="card-content">
+              <h3>Your Brother's Name</h3>
+              <p>Student · Musician · Math Enthusiast</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-content">
+                <h3>Bio</h3>
+                <p>
+                  Write a short bio here. For example: he is a curious student who
+                  enjoys music, math, creative projects, and learning new things.
+                  This section can mention his school, favorite subjects, hobbies,
+                  and what he is currently working on.
+                </p>
+                <br />
+                <p>
+                  You can keep this casual or make it more formal depending on
+                  whether the site is for family, school applications, competitions,
+                  or a public portfolio.
+                </p>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="grid-3">
+              <div class="mini-card">
+                <h3>Music</h3>
+                <p>Add instruments, ensembles, recitals, or favorite pieces.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Math</h3>
+                <p>Add competitions, favorite topics, or problem-solving projects.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Activities</h3>
+                <p>Add clubs, sports, volunteering, or school activities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Music</div>
+          <h2>Performances, practice, and creativity.</h2>
+          <p>
+            Replace these placeholder cards with real performances, recitals,
+            instruments, ensembles, and videos.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card project-card">
+            <img
+              src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=1200&auto=format&fit=crop"
+              alt="Piano placeholder"
+            />
+            <div class="card-content">
+              <span class="tag">Performance</span>
+              <h3>Piano Recital Performance</h3>
+              <p>
+                Placeholder description for a school recital, community performance,
+                or competition piece.
+              </p>
+
+              <div class="detail-list">
+                <div class="detail"><span>›</span> Instrument: Piano</div>
+                <div class="detail"><span>›</span> Piece: Add song name here</div>
+                <div class="detail"><span>›</span> Event: Add recital name here</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card">
+            <img
+              src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=1200&auto=format&fit=crop"
+              alt="Orchestra placeholder"
+            />
+            <div class="card-content">
+              <span class="tag">Ensemble</span>
+              <h3>School Band / Orchestra</h3>
+              <p>
+                Placeholder for band, orchestra, choir, jazz ensemble, or another
+                music group.
+              </p>
+
+              <div class="detail-list">
+                <div class="detail"><span>›</span> Role: Add instrument/voice</div>
+                <div class="detail"><span>›</span> Years: Add years</div>
+                <div class="detail"><span>›</span> Favorite piece: Add title</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card">
+            <img
+              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200&auto=format&fit=crop"
+              alt="Composition placeholder"
+            />
+            <div class="card-content">
+              <span class="tag">Creative Project</span>
+              <h3>Original Composition</h3>
+              <p>
+                Placeholder for an original song, composition, arrangement, or
+                digital music project.
+              </p>
+
+              <div class="detail-list">
+                <div class="detail"><span>›</span> Style: Add genre</div>
+                <div class="detail"><span>›</span> Tools: Add software</div>
+                <div class="detail"><span>›</span> Status: In progress / completed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="math">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Math</div>
+          <h2>Competitions, problem solving, and favorite topics.</h2>
+          <p>
+            Use this page to list contests, awards, favorite math areas, or
+            independent projects.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card project-card">
+            <div class="card-content">
+              <span class="tag">Competition</span>
+              <h3>Math Competition Award</h3>
+              <p>
+                Placeholder for AMC, MathCounts, school math contests, Olympiad
+                training, or local competition results.
+              </p>
+            </div>
+          </div>
+
+          <div class="card project-card">
+            <div class="card-content">
+              <span class="tag">Interest</span>
+              <h3>Favorite Math Topic</h3>
+              <p>
+                Placeholder for algebra, geometry, number theory, combinatorics,
+                probability, or another topic he enjoys.
+              </p>
+            </div>
+          </div>
+
+          <div class="card project-card">
+            <div class="card-content">
+              <span class="tag">Project</span>
+              <h3>Problem Solving Project</h3>
+              <p>
+                Placeholder for a math poster, proof writeup, coding project,
+                puzzle collection, or independent study.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="card contact-card">
+          <h3>Favorite Problem</h3>
+          <p>
+            Add a favorite math problem, puzzle, or proof here. This is a nice
+            place to show personality: what made the problem interesting, what
+            idea solved it, and what he learned from it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="accomplishments">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Accomplishments</div>
+          <h2>Awards, activities, and milestones.</h2>
+          <p>
+            Add school honors, music achievements, math awards, clubs, sports,
+            volunteering, or other activities.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card award-card">
+            <div class="icon-box">🏆</div>
+            <div>
+              <small>Add year here</small>
+              <h3>Honor Roll / Academic Recognition</h3>
+              <p>
+                Short placeholder description for academic awards, school honors,
+                or classroom achievements.
+              </p>
+            </div>
+          </div>
+
+          <div class="card award-card">
+            <div class="icon-box">🎵</div>
+            <div>
+              <small>Add year here</small>
+              <h3>Music Achievement</h3>
+              <p>
+                Short placeholder description for a recital, audition, festival,
+                ensemble, or music exam.
+              </p>
+            </div>
+          </div>
+
+          <div class="card award-card">
+            <div class="icon-box">🧮</div>
+            <div>
+              <small>Add year here</small>
+              <h3>Math Achievement</h3>
+              <p>
+                Short placeholder description for a contest score, team placement,
+                certificate, or math club role.
+              </p>
+            </div>
+          </div>
+
+          <div class="card award-card">
+            <div class="icon-box">⭐</div>
+            <div>
+              <small>Add year here</small>
+              <h3>Community / School Activity</h3>
+              <p>
+                Short placeholder description for volunteering, clubs, leadership,
+                sports, or other activities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Gallery</div>
+          <h2>Photos and videos.</h2>
+          <p>
+            Replace these with real photos or embedded performance videos.
+          </p>
+        </div>
+
+        <div class="grid-3 gallery">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1200&auto=format&fit=crop"
+              alt="Performance photo placeholder"
+            />
+            <div class="card-content">
+              <h3>Performance Photo</h3>
+              <p>Replace with a photo from a concert, recital, or school event.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1200&auto=format&fit=crop"
+              alt="Math event placeholder"
+            />
+            <div class="card-content">
+              <h3>Math Event</h3>
+              <p>Replace with a photo from a math competition or award ceremony.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Embedded video placeholder"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+            <div class="card-content">
+              <h3>Embedded Performance Video</h3>
+              <p>Replace this YouTube embed URL with a real performance video.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Contact</div>
+          <h2>Get in touch.</h2>
+          <p>
+            For a younger student, it is usually best to use a parent or guardian
+            contact email instead of listing too much personal information.
+          </p>
+        </div>
+
+        <div class="card contact-card">
+          <h3>Contact Information</h3>
+          <p>
+            Add a parent/guardian email, school-safe contact method, or simple note
+            here. You can also remove this section entirely if the website is only
+            for family or private sharing.
+          </p>
+
+          <br />
+
+          <a class="button primary" href="mailto:your.email@example.com">
+            Email Placeholder →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Your Brother's Name. Replace this footer text with anything you want.
+    </div>
+  </footer>
+</body>
+</html>
