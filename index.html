@@ -386,6 +386,15 @@
       object-fit: cover;
     }
 
+    .project-card iframe {
+      width: 100%;
+      height: 220px;
+      aspect-ratio: auto;
+      display: block;
+      border: 0;
+      background: black;
+    }
+
     .tag {
       display: inline-block;
       padding: 6px 10px;
@@ -652,20 +661,30 @@
     </section>
 
     <section id="music">
-      <div class="card">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Music</div>
+          <h2>Performances, practice, and creativity.</h2>
+          <p>
+            Replace these placeholder cards with real performances, recitals,
+            instruments, ensembles, and videos.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card project-card">
             <iframe
               src="https://www.youtube.com/embed/AulRgkPEBIY"
-              title="Embedded video placeholder"
+              title="Music performance video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen>
             </iframe>
+
             <div class="card-content">
+              <span class="tag">Performance</span>
               <h3>Embedded Performance Video</h3>
               <p>Replace this YouTube embed URL with a real performance video.</p>
-            </div>
-          </div>
-      
-        
+
               <div class="detail-list">
                 <div class="detail"><span>›</span> Instrument: Piano</div>
                 <div class="detail"><span>›</span> Piece: Add song name here</div>
@@ -849,7 +868,7 @@
             A collection of coding projects, creative work, and other highlights.
           </p>
         </div>
-    
+
         <div class="grid-3 projects">
           <div class="card">
             <a href="https://rkang11.github.io/chess-bot/" target="_blank">
@@ -864,7 +883,7 @@
               <p>This project lets a user play chess against a custom bot directly in the browser.</p>
             </div>
           </div>
-    
+
           <div class="card">
             <img
               src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1200&auto=format&fit=crop"
@@ -875,17 +894,6 @@
               <p>Replace with a photo from a math competition or award ceremony.</p>
             </div>
           </div>
-          <div class="container">
-            <div class="section-heading">
-              <div class="eyebrow">Music</div>
-                <h2>Performances, practice, and creativity.</h2>
-                <p>
-                  Replace these placeholder cards with real performances, recitals,
-                  instruments, ensembles, and videos.
-                </p>
-            </div>
-          </div>
-          
         </div>
       </div>
     </section>
